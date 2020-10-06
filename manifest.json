@@ -5,7 +5,7 @@
     "128": "icon.png"
   },
   "description": "Keep reloading page automatically!",
-  "permissions": ["activeTab", "storage", "tabs"],
+  "permissions": ["storage", "tabs"],
   "background": {
       "scripts": ["background.js"],
       "persistent": false
