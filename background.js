@@ -10,7 +10,7 @@ chrome.storage.onChanged.addListener((whatchanged, area) => {
             if(whatchanged[element].newValue){
                 reloads_holder[element] = setInterval(()=>{
                     chrome.tabs.reload(parseInt(element));
-                }, 5000);
+                }, 10000);
             }
             else {
                 clearInterval(reloads_holder[element]);
