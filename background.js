@@ -9,9 +9,11 @@ chrome.storage.onChanged.addListener((whatchanged, area) => {
         chrome.storage.local.get('input', (result) => {
             if (currentVal) {
                 // Start reloading current tab
+                const reloadInterval = result.input ? result.input * 1000 : 10000;
+
                 reloads_holder[currentKey] = setInterval(()=>{
                     chrome.tabs.reload(parseInt(currentKey));
-                }, result.input * 1000);
+                }, reloadInterval);
             } else {
                 // Stop reloading
                 clearInterval(reloads_holder[currentKey]);
