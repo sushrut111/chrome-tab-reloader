@@ -1,13 +1,6 @@
 chrome.browserAction.setBadgeText({ text: "OFF" });
 chrome.browserAction.setBadgeBackgroundColor({ color: "#4688F1" });
 let reloads_holder = {};
-let count = 0;
-function callback(element) {
-  if (chrome.runtime.lastError) {
-    console.log(chrome.runtime.lastError.message);
-    clearInterval(reloads_holder[element]);
-  }
-}
 
 chrome.storage.onChanged.addListener((whatchanged, area) => {
   console.log(area);
@@ -39,4 +32,14 @@ chrome.tabs.onActivated.addListener(() => {
       }
     });
   });
+});
+
+var id = 0;
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  id = tabId;
+});
+
+chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
+  console.log("id deleted :", id);
+  delete id;
 });
