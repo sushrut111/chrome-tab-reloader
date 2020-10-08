@@ -1,14 +1,35 @@
  <!DOCTYPE html>
   <html>
     <head>
-      <style>
-      </style>
+      <link rel="stylesheet" href="popup.css">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
-      <label for="reload-int-input">Refresh interval (seconds)</label>
-      <input type="number" min='1' id="reload-int-input" />
-      <input type="checkbox" id="active"/> 
-      <label for="active">Activate Auto-reload</label>
+      <div id="main-container">
+        <div id="settings-container">
+          <div id="num-display">
+            <label for="reload-int-display">Refresh interval</label>
+            <p id="reload-int-display">10</p>
+          </div>
+    
+          <input type="range" min="1" max="60" value="10" id="reload-int-input" />
+    
+          <div class="unit-switch">
+            <input type="radio" value="sec" id="sec" name="unit" checked >
+            <label for="sec">Seconds</label>
+            <input type="radio" value="min" id="min" name="unit" >
+            <label for="min">Minutes</label>
+          </div>
+        </div>
+
+        <div id="on-switch-container">
+          <label class="on-switch">
+            <input type="checkbox" id="active"/> 
+            <span class="toggle"></span>
+          </label>
+          <label id="on-switch-label" for="active">OFF</label>
+        </div>
+      </div>
       <script src="popup.js"></script>
     </body>
   </html>

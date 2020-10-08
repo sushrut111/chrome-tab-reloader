@@ -11,7 +11,7 @@ chrome.storage.onChanged.addListener((whatChanged, area) => {
         if (typeof currentVal.active === 'boolean') {
             if (currentVal.active) {
                 // Start reloading current tab
-                const reloadInterval = currentVal.input ? currentVal.input * 1000 : 10000;
+                const reloadInterval = currentVal.unit === 'min' ? currentVal.input * 60 * 1000 : currentVal.input * 1000;
 
                 reloads_holder[currentKey] = setInterval(() => {
                     chrome.tabs.reload(parseInt(currentKey));
