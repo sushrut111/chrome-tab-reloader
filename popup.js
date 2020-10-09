@@ -27,6 +27,7 @@ chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     // Check off checkbox if currently reloading
     if(items[tab.id] && items[tab.id].active){
         active.checked = true;
+        activeLabel.innerHTML = 'ON';
     }
   });
 });
