@@ -1,3 +1,4 @@
+// Relevant DOM elements
 const active = document.getElementById('active');
 const activeLabel = document.getElementById('on-switch-label');
 const intervalSlider = document.getElementById('reload-int-input');
@@ -5,6 +6,10 @@ const intervalDisplay = document.getElementById('reload-int-display');
 const settingsContainer = document.getElementById('settings-container');
 const seconds = document.getElementById('sec');
 const minutes = document.getElementById('min');
+
+// String that displays on/off state
+const ON = 'ON';
+const OFF = 'OFF';
 
 // Maintain checked input box if this window has active reload
 chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
@@ -27,7 +32,8 @@ chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     // Check off checkbox if currently reloading
     if(items[tab.id] && items[tab.id].active){
         active.checked = true;
-        activeLabel.innerHTML = 'ON';
+        activeLabel.innerHTML = ON;
+        settingsContainer.classList.add('disabled');
     }
   });
 });
@@ -52,9 +58,9 @@ active.onchange = function(event) {
       chrome.storage.local.set(storedObj);
     });
 
-    activeLabel.innerHTML = 'ON';
+    activeLabel.innerHTML = ON;
     settingsContainer.classList.add('disabled');
-    chrome.browserAction.setBadgeText({text: 'ON'});
+    chrome.browserAction.setBadgeText({text: ON});
 
   // Turn OFF
   } else {
@@ -69,9 +75,9 @@ active.onchange = function(event) {
       chrome.storage.local.set(storedObj);
     });
 
-    activeLabel.innerHTML = 'OFF';
+    activeLabel.innerHTML = OFF;
     settingsContainer.classList.remove('disabled');
-    chrome.browserAction.setBadgeText({text: 'OFF'});
+    chrome.browserAction.setBadgeText({text: OFF});
 
   }
 }

@@ -28,11 +28,6 @@
   margin-top: 1em;
 }
 
-/* Prevent interaction with settings while running */
-.disabled {
-  pointer-events: none;
-}
-
 /* Unit Switch Button */
 
 .unit-switch {
@@ -139,3 +134,15 @@ input:checked + .toggle:before {
   font-size: 1.5em;
 }
 
+/* Prevent interaction with settings while running */
+.disabled {
+  pointer-events: none;
+}
+
+.disabled input {
+  opacity: 50%;
+}
+
+.disabled .unit-switch {
+  opacity: 50%;
+}

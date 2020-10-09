@@ -2,6 +2,9 @@ chrome.browserAction.setBadgeText({text: 'OFF'});
 chrome.browserAction.setBadgeBackgroundColor({color: '#4688F1'});
 let reloads_holder = {};
 
+const ON = 'ON';
+const OFF = 'OFF';
+
 // Main auto-reload function
 chrome.storage.onChanged.addListener((whatChanged, area) => {
     if(area === "local") {
@@ -31,9 +34,9 @@ chrome.tabs.onActivated.addListener(()=>{
 
         chrome.storage.local.get(tab.id.toString(), (items) => {
             if (items[tab.id] && items[tab.id].active) {
-                chrome.browserAction.setBadgeText({ text: 'ON' });
+                chrome.browserAction.setBadgeText({ text: ON });
             } else {
-                chrome.browserAction.setBadgeText({ text: 'OFF' });
+                chrome.browserAction.setBadgeText({ text: OFF });
             }
         });
       });
