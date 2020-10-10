@@ -1,5 +1,5 @@
-chrome.browserAction.setBadgeText({text: 'OFF'});
-chrome.browserAction.setBadgeBackgroundColor({color: '#4688F1'});
+chrome.browserAction.setBadgeText({ text: "OFF" });
+chrome.browserAction.setBadgeBackgroundColor({ color: "#4688F1" });
 let reloads_holder = {};
 
 const ON = 'ON';
@@ -40,4 +40,9 @@ chrome.tabs.onActivated.addListener(()=>{
             }
         });
       });
+});
+
+// Catch tab removed and remove the related reloader.
+chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
+    clearInterval(reloads_holder[tabId]);
 });
